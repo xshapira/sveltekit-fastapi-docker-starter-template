@@ -1,7 +1,9 @@
-# Start Template Showing How To Configure SvelteKit with FastAPI
-This app shows how to configure a SvelteKit frontend with a FastAPI backend.
+# Starter Template Showing How To Configure SvelteKit with FastAPI
+This app shows how to configure a SvelteKit frontend with a FastAPI backend and have them run inside of Docker containers using Docker Compose.
 
 # Setup Instructions
+You can clone this repo, but here are the instructions to replicate this stack yourself with the updated versions of SvelteKit, FastAPI, and Docker:
+
 1. Create a folder on your computer where you want to store your project code.
 2. Client-side Setup:
     1. From a terminal window, `cd` into your project folder.
@@ -9,15 +11,17 @@ This app shows how to configure a SvelteKit frontend with a FastAPI backend.
     3. When asked `Where should we create your project?` type `client`. When prompted, select the options that you want for your project. (NOTE: This repo uses TypeScript, so some of the configs in this repo are specific to TypeScript.) This will create your SvelteKit project inside a directory named `client`. 
     4. Copy the configs from this repo's `svelte.config.js`, `tsconfig.json` files.
     5. In your `package.json` file, add `--host` to the end of your `dev` script so your Docker containers can communicate with each other: `"dev": "svelte-kit dev --host"`.
-    5. Rename the `app.html` file that is inside the `/client/src` folder to `index.html` and move it directly inside of the `/client` folder. So its new location will be `/client/index.html`.
-    6. If you are using Kubernetes in your production deployments you can create an `express-web-server.js` file directly inside the `/client` folder and copy the code from this repo's `express-web-server.js` file to use as a starting point. Or you can configure Nginx as your web server.
-    7. You will have to make sure that you have any npm packages installed in your project that apply to the configurations you are using (e.g. `@sveltejs/adapter-static`, `express`, `http-proxy-middleware`).
+    6. Rename the `app.html` file that is inside the `/client/src` folder to `index.html` and move it directly inside of the `/client` folder. So its new location will be `/client/index.html`.
+    7. If you are using Kubernetes in your production deployments you can create an `express-web-server.js` file directly inside the `/client` folder and copy the code from this repo's `express-web-server.js` file to use as a starting point. Or you can configure Nginx as your web server.
+    8. You will have to make sure that you have any npm packages installed in your project that apply to the configurations you are using (e.g. `@sveltejs/adapter-static`, `express`, `http-proxy-middleware`).
 3. Server-side Setup:
-    1. Create another folder inside your project folder called `server`.
-    2. Copy all of the files inside the `server` directory in this repo into the `server` directory of your project.
-    3. The `/server/main.py` file has a lot of comments that might be helpful in understanding things like how requests work in an SPA app.
+    1. You will have to install Python on your computer, if it is not already installed.
+    2. Create another folder inside your project folder called `server`.
+    3. Copy all of the files inside the `server` directory in this repo into the `server` directory of your project.
+    4. The `/server/main.py` file has a lot of comments that might be helpful in understanding things like how requests work in an SPA app.
 4. Docker setup:
-    1. Copy the `Makefile`, `docker-compose.yml`, `docker-compose.dev.yml`, and `.dockerignore` files from this repo's root folder into your project's root folder.
+    1. You will have to install Docker on your computer, if it is not already installed.
+    2. Copy the `Makefile`, `docker-compose.yml`, `docker-compose.dev.yml`, and `.dockerignore` files from this repo's root folder into your project's root folder.
     2. Copy the `Dockerfile.client` and `Dockerfile.client.dev` files from this repo's `client` folder into your project's `client` folder.
     3. Copy the `Dockerfile.server` and `Dockerfile.server.dev` files from this repo's `server` folder into your project's `server` folder.
     4. The above Docker and Docker Compose files have some comments in them that should help to clarify what the code is doing in those files.
