@@ -1,4 +1,4 @@
-# Starter Template Showing How To Configure SvelteKit with FastAPI
+# Starter Template Showing How To Configure SvelteKit with FastAPI All Running Inside of Docker Containers
 This app shows how to configure a SvelteKit frontend with a FastAPI backend and have them run inside of Docker containers using Docker Compose.
 
 # Setup Instructions
