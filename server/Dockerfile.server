@@ -1,0 +1,20 @@
+# This Dockerfile will create a production version of the FastAPI app (i.e. backend code).
+# The final version will be a web server inside the container's `/app` directory that responds to API requests.
+
+FROM continuumio/anaconda3:2021.05
+
+# Create the following directory in the container and make it the container's current working directory.
+WORKDIR /app
+
+# Copy the files from this project's server directory into the container's current working directory.
+COPY ./server .
+
+# Install Python dependencies.
+# What is pip's `--no-cache-dir` good for?: https://stackoverflow.com/questions/45594707/what-is-pips-no-cache-dir-good-for
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Make the FastAPI server available to the host machine on port 8000.
+EXPOSE 8000
+
+# Run the default app for this container.
+CMD bash ./start_server.sh

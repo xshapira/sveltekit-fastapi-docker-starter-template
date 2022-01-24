@@ -1,0 +1,25 @@
+# These instructions are for testing a server image (using FastAPI) by itself.
+# -----------------------------------------------------------------------------
+# Build this Dockerfile into an image: `docker build -t fastapi-image -f Dockerfile.fastapi.dev .`
+# Run a Docker container from this image:
+  # `docker run --name fastapi-container --rm -p 8000:8000 fastapi-image`
+# Access the app at `http://localhost:8000/api/get-todos` to see a JSON response.
+# Stop this Docker container: `docker stop fastapi-container`
+
+FROM continuumio/anaconda3:2021.05
+
+# Create the following directory in the container and make it the container's current working directory.
+WORKDIR /app/server
+
+# Copy the files from this project's server directory into the container's current working directory.
+COPY ./server .
+
+# Install Python dependencies.
+# What is pip's `--no-cache-dir` good for?: https://stackoverflow.com/questions/45594707/what-is-pips-no-cache-dir-good-for
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Make the server available to the host machine on port 8000.
+EXPOSE 8000
+
+# Run a script that will run the default app for this container.
+CMD bash ./start_server_dev.sh
